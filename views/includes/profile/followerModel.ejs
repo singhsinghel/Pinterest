@@ -8,12 +8,12 @@
             </div>
             <div class="modal-body">
                   <% if (user.followers.length>0) { %>               
-                  <div class="owner-info d-flex flex-column  justify-content-between align-items-start w-100">
+                  <div class="owner-info d-flex flex-column justify-content-between w-100">
                   <% user.followers.forEach(user1=>{ 
                     const isFollowingUser1 = user1.followers && user1.followers.map(follower => follower._id.toString()).includes(currUser._id.toString()); %>
-                    <div class="owner d-flex justify-content-between gap-2 align-items-center mt-3 w-100">
-                        <div class="dp-name d-flex gap-2">
-                            <div class="dp ">
+                    <div class="owner d-flex justify-content-between align-items-center mt-3">
+                        <div class="dp-name d-flex flex-row gap-2">
+                            <div class="dp">
                                 <a href="/users/<%= user1._id %>/profile">  <img src="<%= user1.dp&& user1.dp.url? user1.dp.url : 'https://www.66autocolor.com/cdn/shop/products/11.GRA0898SleekGray_838x.jpg?v=1630091688'  %>"class=" rounded-circle img-fluid " style="width: 3rem; height:3rem; object-fit: cover;" alt="..."></a>
                             </div>
                             <div class="name">
@@ -21,7 +21,7 @@
                                     <%= user1.fullName %>
                                 </div>
                             </div>
-                    <div class="follow"> 
+                    <div class="follow align-self-end"> 
                       <% if (user1.username.toString()===currUser.username.toString()) { %>
                             <%} else if (!isFollowingUser1) { %>
                                 <a href="/users/<%= user1._id %>/follow" class="btn btn-outline-light rounded-4 text-dark">Follow</a>

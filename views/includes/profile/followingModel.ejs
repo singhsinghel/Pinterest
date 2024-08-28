@@ -8,10 +8,10 @@
             </div>
             <div class="modal-body">
                 <% if (user.following.length>0) { %>
-                <div class="owner-info d-flex flex-column justify-content-between align-items-start w-100 ">
+                <div class="owner-info d-flex flex-column justify-content-between  w-100 ">
                   <% user.following.forEach(user1=>{
                     const isFollowingUser1 =currUser.following.map(follower => follower._id.toString()).includes(user1._id.toString()); %>
-                    <div class="owner d-flex justify-content-between gap-2 align-items-center mt-3 w-100">
+                    <div class="owner d-flex justify-content-between  align-items-center mt-3 ">
                       <div class="dp-name d-flex gap-2">
                             <div class="dp ">
                                 <a href="/users/<%= user1._id %>/profile">  <img src="<%= user1.dp.url %>" class=" rounded-circle img-fluid " style="width: 3rem; height:3rem; object-fit: cover;" alt="..."></a>

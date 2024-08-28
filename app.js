@@ -22,7 +22,7 @@ const Post = require('./models/postModel.js');
 const methodOverride=require('method-override');
 app.use(methodOverride('_method'));
 
-const dbUrl='mongodb://127.0.0.1:27017/pinterest';
+const dbUrl=process.env.AT;
 async function main(){
  await mongoose.connect(dbUrl);
 }

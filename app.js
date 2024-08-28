@@ -20,6 +20,7 @@ const boardsRouter=require('./routes/boardsRoute.js');
 
 const methodOverride=require('method-override');
 const { isLoggedIn } = require('./middleware.js');
+const ExpressError = require('./utils/ExpressError.js');
 app.use(methodOverride('_method'));
 
 const dbUrl=process.env.AT;
@@ -87,6 +88,10 @@ app.get('/',async(req,res)=>{
 app.use('/users',userRouter);
 app.use('/pins', isLoggedIn, pinsRouter);
 app.use('/boards',isLoggedIn, boardsRouter);
+
+app.all('*',(req,res,bext)=>{
+    next(new ExpressError(404,"You are lost!"));
+})
 
 app.listen(8080,()=>{
     console.log('app is listining');

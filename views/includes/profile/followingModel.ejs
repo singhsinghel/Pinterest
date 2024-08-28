@@ -3,15 +3,16 @@
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel">Following</h1>
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Followers</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <div class="follower-container">
-                <div class="owner-info d-flex justify-content-between align-items-center">
-                  <% if (user.following.length>0) { %>
-                  <% user.following.forEach(user1=>{%>
-                    <div class="owner d-flex gap-2 align-items-center mt-3">
+                <% if (user.following.length>0) { %>
+                <div class="owner-info d-flex flex-column justify-content-between align-items-start w-100 ">
+                  <% user.following.forEach(user1=>{
+                    const isFollowingUser1 =currUser.following.map(follower => follower._id.toString()).includes(user1._id.toString()); %>
+                    <div class="owner d-flex justify-content-between gap-2 align-items-center mt-3 w-100">
+                      <div class="dp-name d-flex gap-2">
                             <div class="dp ">
                                 <a href="/users/<%= user1._id %>/profile">  <img src="<%= user1.dp.url %>" class=" rounded-circle img-fluid " style="width: 3rem; height:3rem; object-fit: cover;" alt="..."></a>
                             </div>
@@ -20,15 +21,19 @@
                                       <%= user1.fullName %>
                             </div>
                     </div>
-                    
-                    <div class="follow">                  
-                    <a href="/users/<%= user1._id %>/unfollow" class="btn btn-dark rounded-4 text-light">Following</a>
+                    <div class="follow">                 
+                        <% if (user1.username.toString()===currUser.username.toString()) { %>
+                            <%} else if (!isFollowingUser1) { %>
+                                <a href="/users/<%= user1._id %>/follow" class="btn btn-outline-light rounded-4 text-dark">Follow</a>
+                            <% }else if (isFollowingUser1) { %>
+                                <a href="/users/<%= user1._id %>/unfollow" class="btn btn-dark rounded-4 text-light">Following</a>
+                            <% } %>
+                    </div>
                     </div>
                  <% }) %>
                   <% } else{%>
                     <span class="fw-bold fs-5 ">Not following any account</span>
                     <% } %>
-              </div>
               </div>
             </div>
           </div>

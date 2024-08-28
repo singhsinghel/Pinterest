@@ -5,9 +5,13 @@
       <div class="card text-center mb-3 mt-3 border-0" style="width: 18rem;">
         <div class="card-body ">
           <h1 class="card-title"><%= board.name %></h1>
-          <a type="button rounded-circle bg-light" class="text-secondary-emphasis " data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            <i class='bx bxs-pencil' ></i>
-          </a>
+          <% if (board.user._id.toString()===currUser._id.toString()) { %>
+           
+            <a type="button rounded-circle bg-light" class="text-secondary-emphasis " data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              <i class='bx bxs-pencil' ></i>
+            </a>
+          <% } %> 
+         
           <p class="card-text"><%= board.description %></p>
           <p><%= board.isSecret ? 'Secret board' : 'Public Visibility' %></p>
         </div>

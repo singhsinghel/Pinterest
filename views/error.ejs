@@ -1,13 +1,30 @@
 <% layout('/layouts/boilerplate') %>
 <style>
+    body{
+        background-color: #E7FBE6;
+    }
     .error{
         z-index: 99999;
     }
+    .err-container{
+        background-color: #E7FBE6;
+        height: 100vh;
+    }
+    .card{
+        background-color: #E7FBE6;
+    }
+    .navbar{
+        display: none !important;
+    }
 </style>
-<div class="row mt-5 ">
-    <div class=" error col-6 offset-3" role="alert">
-        Status: <%= status %> <br>
-     <%= message %>
-     <a href="/pins/back" class="btn btn-danger">Go back</a>
-    </div>
+<div class="w-100  d-flex justify-content-center align-items-center  err-container mt-5 ">
+
+    <div class="card p-5 text-center" style="border:none; transform:scale(2) ">
+        <div class="card-body h-100 w-100">
+          <h5 class="card-title fw-slim" style="color: #86AB89;"><%= status %> error</h5>
+          <p class="card-text text-secondary card-subtitle ">   <%= message %></p>
+          <a href="/pins/back" class="card-link text-danger opacity-70" style="text-decoration: none;" >Take me to <span style="text-decoration: underline;">homepage</span> </a>
+        </div>
+      </div>
 </div>
+

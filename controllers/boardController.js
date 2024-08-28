@@ -1,6 +1,7 @@
 const User = require('../models/userModel');
 const Board = require('../models/boardModel');
 const Post = require('../models/postModel');
+const ExpressError = require('../utils/ExpressError');
 
 module.exports.boardCreate=async(req,res)=>{
     let {name,isSecret}=req.body;
@@ -18,10 +19,15 @@ module.exports.boardCreate=async(req,res)=>{
 };
 
 module.exports.showBoard=async (req,res)=>{
+    try{
+
     let boardId=req.params.boardId;
     const board=await Board.findById(boardId).populate('pins');
     console.log(board);
     res.render('showBoard',{board});
+    }catch(err){
+        throw new ExpressError(500,err.message);
+    }
 };
 
 module.exports.editBoard=async (req,res)=>{

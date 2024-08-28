@@ -27,6 +27,7 @@
     <div class="saved-posts d-flex flex-wrap w-75 align-items-start  gap-4  mt-3 mb-3 ">
       <% if (user.boards.length>0) { %>
         <% user.boards.forEach(board=>{ %>
+          <% if (!board.isSecret||board.isSecret&&user._id.toString()===currUser._id.toString()) { %>
           <div class="individual-post">
               <a href="/boards/<%= board._id %>">
                  <div class="collage d-flex rounded-4 gap-1">
@@ -44,6 +45,7 @@
                <p class="small"><%= board.pins.length %> Pins</p>
              </div>
             </div>
+            <% } %>
             <% }) %>
           </div>
 

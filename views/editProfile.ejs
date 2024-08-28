@@ -1,16 +1,16 @@
 <%- layout('./layouts/boilerplate.ejs') %>
 <div class="main d-flex justify-content-center align-items-center w-90 h-100 ">
-    <div class="container d-flex-column flex-1 min-vh-100 ">
+    <div class="container d-flex-column flex-1 h-100 ">
      <div class="textings mt-4">
         <h3>Edit Profile</h3>
         <p>Keep your personal details private. Information you add here is <br> visible to anyone who can view your profile.</p>
      </div>
-    
-     <div class="photo d-flex gap-2 align-items-center mt-4 ">
+    <div class="form w-100">
+     <div class="photo d-flex gap-3 align-items-center mt-4 ">
        <div class="dp ">
            <img src="<%= currUser.dp.url %>" class=" rounded-circle img-fluid " style="width: 4.5rem; height:4.5rem; object-fit: cover;" alt="...">
        </div>
-       <div class="button ">
+       <div class="button">
         <form action="/users/<%= currUser._id %>/editdp" method="post" id="imageForm"  enctype="multipart/form-data">
         <label for="imageInput" class="btn btn-outline-dark hover:bg-dark bg-light rounded-4  ">
            Change
@@ -19,43 +19,41 @@
         </form>
        </div>
      </div>
-     <div class="inputs col-6">
+     <div class="inputs col-md-6 col-sm-12 ">
         <form action="/users/<%= currUser._id %>/edit" method="post" novalidate class="needs-validation" >
-        <div class="names row">
-        <div class="col-6">
+        <div class="names row mt-3">
+        <div class="col-6 mt-3">
         <label class="small" for="firstname">First Name</label>
-        <input required class="form-control rounded-4" type="text" id="firstname" name="firstname" value="<%= currUser.fullName.trim().split(" ")[0] %>">
+        <input required class="form-control rounded-4 p-2" type="text" id="firstname" name="firstname" value="<%= currUser.fullName.trim().split(" ")[0] %>">
         <div class="valid-feedback"> Available</div>
         <div class="invalid-feedback">First Name cannot be empty</div>
         </div>
-        <div class="col-6">
+        <div class="col-6 mt-3">
         <label class="small" for="lastname">Last Name</label>
-        <input required class="form-control rounded-4" type="text" id="lastname" name="lastname" value="<%= currUser.fullName.trim().split(" ")[1] %>">
+        <input required class="form-control p-2 rounded-4" type="text" id="lastname" name="lastname" value="<%= currUser.fullName.trim().split(" ")[1] %>">
         <div class="valid-feedback"> Available</div>
         <div class="invalid-feedback">Last Name cannot be empty</div>    
     </div>
     </div>
     
-       <div class="col-12">
+       <div class="col-12 mt-3">
         <label for="about" class="small">About</label>
-        <textarea required name="about" class="form-control rounded-4" id="about"><%= currUser.about %></textarea>
+        <textarea required name="about" class="form-control rounded-4 p-2" id="about"><%= currUser.about %></textarea>
         <div class="valid-feedback"> Available</div>
         <div class="invalid-feedback">About cannot be empty</div>    
         </div>
 
-        <div class="col-12">
+        <div class="col-12 mt-3">
         <label class="small" for="username">Username</label>
-        <input required type="text" class="form-control rounded-4" name="username" value="<%= currUser.username %>">
+        <input required type="text" class="form-control p-2 rounded-4" name="username" value="<%= currUser.username %>">
         <div class="valid-feedback"> Available</div>
         <div class="invalid-feedback">Username cannot be empty</div>   
         </div>
-        
-        
      </div>
 </div>
 </div>
+</div>
 <div class="footer  w-100 bg-light bottom-0 d-flex justify-content-center align-items-center " style="height: 5rem; position:fixed" >
-
     <div class="buttonContainer">
         <a href="/users/<%= currUser._id %>/edit" class="btn btn-outline-dark  rounded-5" style="transform: scale(1.05);">Reset</a>
        <button type="submit" class="btn btn-danger rounded-5 ms-3" style="transform: scale(1.05);">Save</button>

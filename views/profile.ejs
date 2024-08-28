@@ -1,0 +1,56 @@
+<%= layout('./layouts/boilerplate.ejs') %>
+<link rel="stylesheet" href="../../styles/profile.css">
+<link rel="stylesheet" href="../../styles/masonary.css">
+
+<%- include('./includes/boardCreateModal.ejs') %>
+<%- include('./includes/profile/followingModel.ejs') %>
+<%- include('./includes/profile/followerModel.ejs') %>
+<div class="main d-flex-column w-100 h-100  mt-3">
+    <%- include('./includes/profile/profile.ejs') %>
+
+    <div class="container mt-4">
+      <div class="masonry-container w-100 created-posts d-none">
+        <% if (user.posts.length > 0) { %>
+            <% user.posts.forEach(post => { %>
+                    <div class="card masonry-item" style="width: 10rem;">
+                       <a href="/pins/<%= post._id %>/"> <img src="<%= post.image.url %>" class="card-img-top  post-img rounded-4 " style="width: 10rem;" alt="<%= post.title %>"></a>
+                        <div class="card-body">
+                        </div>
+                    </div>
+            <% }) %>
+        <% } else { %>
+            <p>No posts to display.</p>
+        <% } %>
+    </div>
+    </div>
+
+    <div class="saved-posts d-flex flex-wrap w-75 align-items-start  gap-4  mt-3 mb-3 ">
+      <% if (user.boards.length>0) { %>
+        <% user.boards.forEach(board=>{ %>
+          <div class="individual-post">
+              <a href="/boards/<%= board._id %>">
+                 <div class="collage d-flex rounded-4 gap-1">
+                   <div class="mainImg rounded-4">
+                       <img src="<%= board.pins[0]?.image?.url || 'https://www.66autocolor.com/cdn/shop/products/11.GRA0898SleekGray_838x.jpg?v=1630091688'  %>" class="rounded-start-4" style="width: 10.21rem;" alt="...">
+                    </div>
+                    <div class="sideImgs d-flex flex-column gap-1">
+                      <img src="<%= board.pins[1]?.image?.url || 'https://www.66autocolor.com/cdn/shop/products/11.GRA0898SleekGray_838x.jpg?v=1630091688'  %>"class="card-img-top " style="width: 5rem; border-radius: 0rem 1rem 0rem 0rem;" alt="...">
+                      <img src="<%= board.pins[2]?.image?.url || 'https://www.66autocolor.com/cdn/shop/products/11.GRA0898SleekGray_838x.jpg?v=1630091688'  %>" class="card-img-top " style="width: 5rem; border-radius: 0rem 0rem 1rem 0rem;" alt="...">
+                  </div>
+               </div>
+              </a>
+             <div class="card-body text-start">
+              <p><b><%= board.name %></b></p>
+               <p class="small"><%= board.pins.length %> Pins</p>
+             </div>
+            </div>
+            <% }) %>
+          </div>
+
+      <% } else { %>
+          <p>No posts to display.</p>
+      <% } %>
+</div>
+</div>
+</div>
+<script src="../../scripts/profile.js"></script>

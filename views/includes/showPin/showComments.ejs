@@ -1,0 +1,83 @@
+
+        <% if (pin.comments.length) { %>
+            <div class="comSwitch d-flex justify-content-between align-items-center">
+            <div class="commentsnum flex-1">
+               <b> <%= pin.comments.length %> commnents </b>
+            </div>
+            <div class="switch" style="cursor:pointer;">
+                <i class='d-none up bx bx-chevron-up fs-2'></i>
+                <i class='down bx bx-chevron-down fs-2'></i>
+            </div>
+        </div>
+            
+            <div class="comm" style="max-height: 15rem; min-height:10rem; overflow:auto;">
+                <% pin.comments.forEach(comment => { %>
+                    <div class="indComment d-flex gap-2 mt-1">
+                    <div class="dp">
+                       <a href="/users/<%= comment.user._id %>/profile"> <img src="<%= comment.user.dp.url %>" class=" rounded-circle img-fluid " style="width: 3rem; height:3rem; object-fit: cover;" alt="..."> </a>
+                    </div>
+                    <div class="name ">
+                         <p style="font-size: 0.75rem;" class="mt-3">
+                            <b> <%= comment.user.username %>
+                           </b> <%= comment.comment %> </p>
+                    </div>
+                    <div class="options">
+                        <div class="like">
+
+                        </div>
+                        <% if (comment.user._id.toString()===currUser._id.toString()||currUser._id.toString()===pin.createdBy._id.toString()) { %>
+                            <div class="dropdown">
+                                <a class="btn " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class='bx bx-dots-horizontal-rounded' ></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <% if (comment.user._id.toString()===currUser._id.toString()) { %>
+                                        <li>
+                                          <a class="dropdown-item edit-btn" href="#" data-comment-id="<%= comment._id %>">Edit</a>
+                                        </li>
+                                    <% } %>
+                                  <li><a class="dropdown-item rounded-3" href="/pins/<%= comment._id %>/<%= pin._id %>/deleteComment">Delete</a></li>
+                                </ul>
+                              </div>
+                              
+                                   <!-- Hidden Edit Form -->
+                                <div class="edit-form d-none" id="edit-form-<%= comment._id %>">
+                                      <form action="/pins/<%= comment._id %>/editComment" method="post" class="needs-validation d-flex" novalidate>
+                                          <div class="input-group">
+                                                <input type="text" name="editedComment" value="<%= comment.comment %>" class="form-control" placeholder="Edit Comment" required>
+                                                <div class="invalid-feedback">
+                                                    Empty comment!.
+                                               </div>
+                                              <button type="submit" class="btn btn-primary ms-2">Save</button>
+                                          </div>
+                                     </form>
+                                  </div>       
+                        <% } %>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+        <% } %>
+        <% if (!pin.comments.length) { %>
+            <div class="no-comment flex-1">
+               <b>No comments yet</b>
+              <p class="small">No comments yet. Add one to start the conversation</p>
+            </div>
+        <% } %>
+        <div class="add-comment mt-auto w-100">
+            <div class="d-flex justify-content-between w-100  align-items-center  mt-3">
+                <div class="dp ">
+                    <img src="<%= currUser.dp.url %>" class=" rounded-circle img-fluid " style="width: 2.5rem; height:2.5rem; object-fit: cover;" alt="...">
+                </div>
+                <div class="form" style="width: 90%;">
+                    <form action="/pins/<%= pin._id %>/comment" method="post" novalidate class="needs-validation d-flex gap-2">
+                        <div class="input w-100 ">
+                          <input required name="comment" type="text" class="form-control w-100 rounded-4" placeholder="Add Comment" >
+                          <div class="invalid-feedback">Comment cannot be empty</div>
+                       </div>
+                       <button type="submit" class="btn "><i class='bx bxs-send fs-4' ></i></i></button>
+                    </form>   
+                </div>
+        </div>
+        
+        </div>

@@ -1,0 +1,38 @@
+<%= layout('./layouts/boilerplate.ejs') %>
+<link rel="stylesheet" href="../styles/login-signup.css">
+<div class="card text-center container rounded-3 shadow-sm ">
+    <div class="card-body">
+    <img class="" src="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png" alt="">
+</div>
+    <div class="h4">
+      Log in to <br> see more
+    </div>
+    <div class="card-body ">
+       <form action="/users/login"  method="post" novalidate class="needs-validation">
+
+        <div class=" mt-2 position-relative">
+          <div class="input-group has-validation">
+            <input  placeholder=" Username" name="username" type="name" class="form-control" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend" required>
+            <div class="invalid-tooltip">
+              Please enter your username.
+            </div>
+          </div>
+        </div>
+
+        <div class=" mt-2 position-relative">
+          <div class="input-group has-validation">
+            <input  placeholder=" Password" name="password" type="password" class="form-control" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend" required>
+            <div class="invalid-tooltip">
+              Password Field cannot be empty.
+            </div>
+          </div>
+        </div>
+        <p class="card-text"><small class="text-body-secondary"><b>Forgot Your Password?</b></small></p>
+          <button class="btn btn-danger w-100 rounded-5">Log in</button>
+       </form>
+    </div>
+    <p class="card-text"><small class="text-body-tertiary">By continuing, you agree to Pinterest's<b>Terms of service, Privacy policy.</b></small></p>
+    <div class="card-footer bg-white">
+        <p class="card-text"><small class="text-body-secondary">Not on pinterest yet?<a href="/users/signup"><b> Sign up</b></a></small></p>
+    </div>
+  </div>

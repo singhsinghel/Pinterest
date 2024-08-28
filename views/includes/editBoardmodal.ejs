@@ -1,0 +1,43 @@
+<style>
+    .modal{
+        border-radius: 2rem !important;
+    }
+</style>
+<div class="modal rounded-5 fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog rounded-5 model-dialog-scrollable">
+      <div class="modal-content rounded-4 p-2">
+        <div class="modal-header tex-center h">
+          <h1 class="modal-title fs-3 text-center" id="staticBackdropLabel">Edit your board</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="post" action="/boards/<%= board._id %>?_method=PUT" novalidate class="needs-validation" >
+         
+                <div>
+                <label for="name" class="small text-secondary fs-6">Name</label>
+                <input required name="name" id="name" type="text" class="form-control rounded-4" value="<%= board.name %>">
+                <div class="invalid-feedback">Name cannot be empty</div>
+              </div>
+                
+                <label for="description" class="small text-secondary fs-6">Description</label>
+                <textarea name="description" id="description" type="text" class="form-control rounded-4" placeholder="Enter a description about your board"><%= board.description %></textarea>
+
+                <div class="form-check mt-3 d-flex align-items-center">
+                  <input name="isSecret" class="form-check-input" style="width: 2rem;  height:2rem;" type="checkbox" value="true" id="flexCheckDefault">
+                  <label class="form-check-label ms-2" for="flexCheckDefault">
+                    <b>Keep this board secret</b> <br>
+                    <span class="small text-secondary">So only you and collaborators can see it.</span>
+                  </label>
+                </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger rounded-4">Update</button>
+        </form>
+        <form method="post" action="/boards/<%= board._id %>?_method=DELETE">
+             <button type="submit" class="btn btn-dark rounded-4">Delete</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+

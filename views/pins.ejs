@@ -1,0 +1,32 @@
+<%- layout('./layouts/boilerplate.ejs') %>
+
+<div class="container py-4 mt-4 d-flex align-items-center justify-content-center">
+    <div class="masonry-container w-100 gap-4">
+        <% pins.forEach(pin => { %>
+            <div class="masonry-item card rounded-4" >
+                <a href="/pins/<%= pin._id %>">
+                    <img src="<%= pin.image.url %>" class="card-img-top img-fluid rounded-4 show-img" alt="..." style="transform:scale(1.05)">
+                </a>
+                <div class="card-img-overlay">
+                    <div class="save width-100">
+                        <% if (user.boards.length>0 ) { %>
+                            <form action="/boards/<%= user.boards[0]._id %>/<%= pin._id %>/save" class=" w-100 d-flex justify-content-between">
+                            <div class="dropdown">
+                                <li class="btn dropdown-toggle" name="board" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <%= user.boards[0].name %>
+                                </li>
+                                <ul class="dropdown-menu">
+                                    <% user.boards.forEach(board=>{ %>
+                                     <li><a class="dropdown-item" href="/boards/<%= board._id %>/<%= pin._id %>/save"><%= board.name %></a></li> 
+                                    <%  }) %>
+                                </ul>
+                              </div>
+                            <% } %>
+                        <button class="btn btn-sm btn-danger rounded-4">Save</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="profile d-flex-column justify-content-between ">
+    <div class="card text-center" style="width: 18rem;">
+        <img src="<%= user.dp.url %>" class="card-img-top rounded-circle img-fluid mx-auto " style="width: 10rem; height:10rem; object-fit: cover;" alt="...">
+        <% if (currUser._id.toString()===user._id.toString()) { %>
+        <form action="/users/<%= user._id %>/editdp" method="post" id="imageForm" enctype="multipart/form-data">
+        <label for="imageInput" class="btn edit-btn btn-danger rounded-circle position-absolute translate-middle" style="top: 40%; right: 23%; width: 2rem; height: 2rem; border:3px solid white;">
+            <i class='bx bxs-edit-alt' style='color:#ffff'></i>
+          </label>
+          <input type="file" id="imageInput" name="profileImage" class="d-none" accept="image/*">
+        </form>
+        <% } %>
+        <div class="card-body">
+          <h2 class="card-title "><%= user.fullName %></h2>
+          <p class="card-text  "><i class='icon bx bxl-pinterest'></i>  <%= user.username  %></p>
+          <p class="card-text fw-semibold follow"> <span class="followers"   data-bs-toggle="modal" data-bs-target="#staticBackdrop-3"><%= user.followers.length %> followers &nbsp;</span> &nbsp;<span class="following" data-bs-toggle="modal" data-bs-target="#staticBackdrop-2"><%= user.following.length %> following</span></p>
+
+          <div class="card-footer bg-white">
+            <% if (currUser._id.toString()!==user._id.toString()) { %>
+                <a href="" > <i class='bx bx-upload'></i></a>
+                <div class="follow">
+                      <% if (!isFollowing) { %>
+                          <a href="/users/<%= user._id %>/follow" class="btn btn-outline-light rounded-4 text-dark">Follow</a>
+                      <% } %>
+                        
+                      <% if (isFollowing) { %>
+                          <a href="/users/<%= user._id %>/unfollow" class="btn btn-dark rounded-4 text-light">Following</a>
+                      <% } %>
+              </div>
+                <a href=""><i class='bx bx-dots-horizontal-rounded' ></i></a> 
+            <% }else if(currUser._id.toString()===user._id.toString()){ %>
+               <a href="/users/<%= user._id %>/edit" class="btn btn-light rounded-4">Edit Profile</a>
+               <div class="dropdown">
+                <button class="btn btn-light rounded-4" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Create
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/pins/<%=user._id %>/create">Pin</a></li>
+                  <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Board</a></li>
+                </ul>
+              </div> 
+               
+            <% } %>
+        </div>
+        </div>
+      </div>
+      <div class="show-optioins d-flex justify-content-evenly mt-2">
+          <button class="btn created "><b>Created</b></button>
+          <button class="btn btn-dark saved"><b>Saved</b></button>
+      </div>
+    </div>

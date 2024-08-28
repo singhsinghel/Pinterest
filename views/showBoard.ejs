@@ -1,0 +1,41 @@
+<%= layout('./layouts/boilerplate.ejs') %>
+
+<%- include('./includes/editBoardModal.ejs') %>
+
+
+<div class="main text-center d-flex justify-content-center align-items-center">
+      <div class="card text-center mb-3 mt-3 border-0" style="width: 18rem;">
+        <div class="card-body ">
+          <h1 class="card-title"><%= board.name %></h1>
+          <a type="button rounded-circle bg-light" class="text-secondary-emphasis " data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <i class='bx bxs-pencil' ></i>
+          </a>
+          <p class="card-text"><%= board.description %></p>
+          <p><%= board.isSecret ? 'Secret board' : 'Public Visibility' %></p>
+        </div>
+      </div>
+</div>
+
+<div class="pin-container">
+    <div class="count ms-4">
+        <h4 class=""><%= board.pins.length %> Pins</h4>
+    </div>
+    <div class="container mt-4 d-flex align-items-center justify-content-center">
+        <div class="masonry-container w-100">
+            <% board.pins.forEach(pin => { %>
+                <div class="masonry-item card">
+                    <a href="/pins/<%= pin._id %>">
+                        <img src="<%= pin.image.url %>" class="card-img-top img-fluid rounded show-img" alt="...">
+                    </a>
+                    <div class="card-img-overlay">
+                        <div class="save d-flex flex-row-reverse d-none width-100"> 
+                             
+                                    <a class="btn btn-dark" href="/boards/<%= board._id %>/<%= pin._id %>/unsave">Unsave</a>
+                                       
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</div>

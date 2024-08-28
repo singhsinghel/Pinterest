@@ -1,0 +1,59 @@
+.arrow{
+    position: sticky;
+    top:1rem;
+    left: 0rem;
+}
+.container {
+    box-shadow: rgba(0, 0, 0, 0.347) 0px 1px 25px 0px;
+    width: 65%;
+}
+.child-container{
+    flex:1;
+    width: 50%;
+    min-width: none;
+}
+
+.owner{
+    height: 3rem;
+
+}
+.actions{
+    font-size:x-large;
+    color: black;
+}
+.add-comment{
+    margin-top: auto !important;
+}
+.red{
+    color: red !important;
+}
+.form-check-input:checked {
+    background-color: black;
+    border-color: black;
+}
+.form-check-input:checked::before {
+    background-color: white; 
+}
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column !important; /* Stack items vertically */
+        align-items: center;
+        width: 90% !important; /* Adjust width if needed */
+        padding: 0 !important;
+        padding-bottom: 1rem !important;
+    }
+    .arrow{
+        display: none;
+    }
+    .show-img{
+        max-width:  100% !important;
+        width: 100% !important;
+        border-radius: 1rem 1rem 0rem 0rem !important;
+    }
+    .info{
+           width: 90%;
+    }
+    .custom-offcanvas {
+        width: 75% !important;
+    }
+}

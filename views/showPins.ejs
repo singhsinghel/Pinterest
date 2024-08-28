@@ -1,0 +1,55 @@
+<%- layout('./layouts/boilerplate.ejs') %>
+<link rel="stylesheet" href="../../styles/showpin.css">
+
+<!-- Include the Edit Pin Offcanvas component -->
+<%- include('./includes/showPin/editPinOffcanvas.ejs') %>
+
+<!-- Main container for the pin display -->
+<div class="main position-relative d-flex justify-content-center w-100 dvh-100">
+    <!-- Navigation arrow for "For You" section -->
+    <div class="arrow p-1">
+       <a href="/pins/back" class="text-decoration-none"><i class='bx bxs-chevrons-left '></i> For You </a> 
+    </div>
+
+    <!-- Container for the pin image and its details -->
+    <div class="container pin d-flex gap-3 h-95 mt-3 p-3 rounded-5 mb-5">
+        <!-- Pin image -->
+        <img src="<%= pin.image.url %>" 
+             class="img-fluid show-img rounded-5 child-container" 
+             style="max-width: 30rem; object-fit: cover;" 
+             alt="">
+
+        <!-- Pin information -->
+        <div class="info child-container d-flex flex-column justify-content-between h-100">
+            <!-- Top section of the pin information -->
+            <div class="half-container d-flex flex-column justify-content-between h-25 mt-3">
+                <!-- Options container (like, save, etc.) -->
+                <%- include('./includes/showPin/optionContainer.ejs') %>
+
+                <!-- Pin title and description -->
+                <div class="description">
+                    <h2><%= pin.title %></h2>
+                    <p><%= pin.description %></p>
+                </div>
+
+                <!-- Owner information -->
+                <%- include('./includes/showPin/ownerInfo.ejs') %>
+            </div>
+
+            <!-- Comments section -->
+            <% if (pin.allowComments) { %>
+                <div class="comments mt-5">
+                    <%- include('./includes/showPin/showComments.ejs') %>
+                </div>
+            <% } else { %>
+                <!-- Message when comments are not allowed -->
+                <div class="not-allowed-comments text-center">
+                    <h4 class="text-secondary">Comments are turned off for this pin🤐</h4>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts specific to this page -->
+<script src="../scripts/showPin.js"></script>

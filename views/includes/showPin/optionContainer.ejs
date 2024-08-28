@@ -1,0 +1,61 @@
+<div class="actions d-flex justify-content-between ">
+    <div class="trinity d-flex justify-content-center align-items-center">
+       <div class="like d-flex align-items-center gap-1">
+           <div class="icon ">
+           <% if (!isLiked) { %>
+               <a href="/pins/<%= pin._id %>/like" class=" actions"> <i class='bx bx-heart'></i> </a>
+           <% } %>
+           <% if (isLiked) { %>
+               <a href="/pins/<%= pin._id %>/unlike" class=" actions">  <i class='bx bxs-heart red'></i> </a> 
+           <% } %>
+          </div>
+          <div class="likeNum d-flex align-items-center justify-content-center">
+           <% if (pin.likes.length) { %>
+               <small class="fs-6 fw-semibold"><%= pin.likes.length %></small>
+           <% } %>
+          </div>
+       </div>
+       <div class="share">
+           <i class='bx bxs-share bx-flip-horizontal ms-3 actions' ></i>
+       </div>
+       <% if (currUser._id.toString()===pin.createdBy._id.toString()) { %>
+        <div class="edit-download ms-1">
+           <div class="dropdown">
+               <button class="btn rounded-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   <i class='bx bx-dots-horizontal-rounded fs-3'></i>
+               </button>
+               <ul class="dropdown-menu shadow-lg rounded-4 p-2">
+                 <li><button class="btn  dropdown-item" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Edit pin</button>
+
+                 </li>
+                 <li><a class="dropdown-item rounded-4" href="<%= pin.image.url %>" download="<%= pin.image.filename %>">Download image</a></li>
+               </ul>
+             </div>
+        </div>
+       <% } %>
+       <% if (currUser._id.toString()!==pin.createdBy._id.toString()) { %>
+       <div class="download">
+           <a href="<%= pin.image.url %>" download="<%= pin.image.filename %>" class="btn actions">
+               <i class='bx bxs-download'></i>
+           </a>
+       </div>
+       <% } %>
+    </div>
+    <div class="save-to-board ">
+       <% if (user.boards.length>0 ) { %>
+           <form action="/boards/<%= user.boards[0]._id %>/<%= pin._id %>/save" class="d-flex justify-content-between">
+           <div class="dropdown">
+               <li class="btn dropdown-toggle" name="board" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   <%= user.boards[0].name %>
+               </li>
+               <ul class="dropdown-menu">
+                   <% user.boards.forEach(board=>{ %>
+                    <li><a class="dropdown-item" href="/boards/<%= board._id %>/<%= pin._id %>/save"><%= board.name %></a></li> 
+                   <%  }) %>
+               </ul>
+             </div>
+           <% } %>
+       <button class="btn btn-sm btn-danger ms-1 rounded-4">Save</button>
+   </form>
+   </div>
+   </div>

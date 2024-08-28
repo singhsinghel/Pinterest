@@ -1,0 +1,13 @@
+<% layout('/layouts/boilerplate') %>
+<style>
+    .error{
+        z-index: 99999;
+    }
+</style>
+<div class="row mt-5 ">
+    <div class="alert error alert-danger col-6 offset-3" role="alert">
+        Status: <%= status %> <br>
+     <%= message %>
+     <a href="/pins/back" class="btn btn-danger">Go back</a>
+    </div>
+</div>

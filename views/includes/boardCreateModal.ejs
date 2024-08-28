@@ -1,0 +1,27 @@
+<div class="modal rounded-4 fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Create board</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/boards/<%= currUser._id %>/create"  method="post">
+                <label for="name" class="small text-secondary">Name</label>
+                <input name="name" type="text" class="form-control" placeholder="E.g 'Places to go' or 'Recipes to make'">
+        
+                <div class="form-check mt-3 d-flex align-items-center">
+                  <input name="isSecret" class="form-check-input" style="width: 2rem;  height:2rem;" type="checkbox" value="" id="flexCheckDefault">
+                  <label class="form-check-label ms-2" for="flexCheckDefault">
+                    <b>Keep this board secret</b> <br>
+                    <span class="small text-secondary">So only you and collaborators can see it.</span>
+                  </label>
+                </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger rounded-4">Create</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>

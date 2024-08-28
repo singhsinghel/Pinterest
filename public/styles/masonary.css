@@ -1,0 +1,41 @@
+html, body {
+    height: 100%;
+}
+.masonry-container {
+    column-count: 6;
+}
+
+@media (max-width: 992px) {
+    .masonry-container {
+        column-count: 4;
+    }
+}
+
+@media (max-width: 768px) {
+    .masonry-container {
+        column-count: 2;
+    }
+}
+.masonry-item {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+.card-img-overlay {
+    pointer-events: none;
+}
+.save {
+    display: none;
+    pointer-events: auto; 
+}
+
+.showit {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.bright {
+    filter: brightness(50%);
+}

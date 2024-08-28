@@ -1,0 +1,54 @@
+<%= layout('./layouts/boilerplate.ejs') %>
+<link rel="stylesheet" href="../styles/login-signup.css">
+<div class="card text-center container rounded-3 shadow ">
+    <div class="card-body">
+    <img class="" src="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png" alt="">
+</div>
+    <div class="h4">
+      Sign Up to <br> dive in
+    </div>
+    <div class="card-body ">
+       <form action="/users/signup"  method="post" novalidate class="needs-validation" >
+
+        <div class=" mt-2 position-relative">
+          <div class="input-group has-validation">
+            <input placeholder="Username" name="username" type="text" class="form-control" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend" required>
+            <div class="invalid-tooltip">
+              Please choose a unique and valid username.
+            </div>
+          </div>
+        </div>
+        
+        <div class=" mt-2 position-relative">
+          <div class="input-group has-validation">
+            <input placeholder="Username" name="fullName" type="text" class="form-control" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend" required>
+            <div class="invalid-tooltip">
+              Please choose a fullname.
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-2 position-relative">
+          <div class="input-group has-validation">
+            <input placeholder="Email" name="email" type="text" class="form-control" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend" required>
+            <div class="invalid-tooltip">
+              Please choose an email.
+            </div>
+          </div>
+        </div>
+        <div class=" mt-2 position-relative">
+          <div class="input-group has-validation">
+            <input  placeholder="Create Password" name="password" type="password" class="form-control" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend" required>
+            <div class="invalid-tooltip">
+              Please choose a unique and valid Password.
+            </div>
+          </div>
+        </div>
+          <button class="btn btn-primary w-100 rounded-5 mt-2">Sign up</button>
+       </form>
+    </div>
+    <p class="card-text"><small class="text-body-tertiary">By continuing, you agree to Pinterest's<b>Terms of service, Privacy policy.</b></small></p>
+    <div class="card-footer bg-white">
+        <p class="card-text"><small class="text-body-secondary">Already have an account?<a href="/users/login"><b>Login</b></a></small></p>
+    </div>
+  </div>

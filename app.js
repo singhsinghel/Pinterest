@@ -11,15 +11,15 @@ const cookieParser=require('cookie-parser')
 const LocalStrategy=require('passport-local');
 const passport=require('passport');
 const flash=require('connect-flash');
-const Board = require('./models/boardModel');
+
 
 const userRouter=require('./routes/userRoute.js');
 const pinsRouter=require('./routes/pinsRoute.js');
 const boardsRouter=require('./routes/boardsRoute.js');
-const Post = require('./models/postModel.js');
 
 
 const methodOverride=require('method-override');
+const { isLoggedIn } = require('./middleware.js');
 app.use(methodOverride('_method'));
 
 const dbUrl=process.env.AT;
@@ -68,7 +68,6 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser()); 
 
 
-
 app.use(flash());
 
 app.use((req,res,next)=>{
@@ -86,8 +85,8 @@ app.get('/',async(req,res)=>{
 });
 
 app.use('/users',userRouter);
-app.use('/pins',pinsRouter);
-app.use('/boards',boardsRouter);
+app.use('/pins', isLoggedIn, pinsRouter);
+app.use('/boards',isLoggedIn, boardsRouter);
 
 app.listen(8080,()=>{
     console.log('app is listining');

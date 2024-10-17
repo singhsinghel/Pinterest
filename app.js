@@ -11,6 +11,8 @@ const cookieParser=require('cookie-parser')
 const LocalStrategy=require('passport-local');
 const passport=require('passport');
 const flash=require('connect-flash');
+const schedule= require('node-schedule');
+const axios=require('axios')
 
 
 const userRouter=require('./routes/userRoute.js');
@@ -89,6 +91,20 @@ app.use('/users',userRouter);
 app.use('/pins', isLoggedIn, pinsRouter);
 app.use('/boards',isLoggedIn, boardsRouter);
 
+
+
+const keepAliveJob = schedule.scheduleJob('*/5 * * * *', async () => {
+    try {
+        // Replace with your actual app URL
+        await axios.get(`https://pinterest-y4gw.onrender.com/ping`);
+    } catch (error) {
+        console.log('Ping failed:', error.message);
+    }
+});
+
+app.get('/ping', (req, res) => {
+    res.sendStatus(200); // Respond to the ping
+});
 app.all('*',(req,res,bext)=>{
     next(new ExpressError(404,"You are lost!"));
 })

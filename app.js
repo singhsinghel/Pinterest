@@ -95,7 +95,6 @@ app.use('/boards',isLoggedIn, boardsRouter);
 
 const keepAliveJob = schedule.scheduleJob('*/5 * * * *', async () => {
     try {
-        // Replace with your actual app URL
         await axios.get(`https://pinterest-y4gw.onrender.com/ping`);
     } catch (error) {
         console.log('Ping failed:', error.message);

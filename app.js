@@ -93,17 +93,17 @@ app.use('/boards',isLoggedIn, boardsRouter);
 
 
 
-const keepAliveJob = schedule.scheduleJob('*/5 * * * *', async () => {
-    try {
-        await axios.get(`https://pinterest-y4gw.onrender.com/ping`);
-    } catch (error) {
-        console.log('Ping failed:', error.message);
-    }
-});
+// const keepAliveJob = schedule.scheduleJob('*/5 * * * *', async () => {
+//     try {
+//         await axios.get(`https://pinterest-y4gw.onrender.com/ping`);
+//     } catch (error) {
+//         console.log('Ping failed:', error.message);
+//     }
+// });
 
-app.get('/ping', (req, res) => {
-    res.sendStatus(200); // Respond to the ping
-});
+// app.get('/ping', (req, res) => {
+//     res.sendStatus(200); // Respond to the ping
+// });
 app.all('*',(req,res,bext)=>{
     next(new ExpressError(404,"You are lost!"));
 })

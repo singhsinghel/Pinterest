@@ -19,16 +19,16 @@ Welcome to the **Pinterest Clone** project! This application mimics the function
 
 ## 🖼️ Screenshots
 
-![User Profile](./asswts)
+![User Profile](./assets/profile-image.png)
 *User profile showing account information and followed users.*
 
-![Home Feed](path/to/your/screenshot2.png)
+![Home Feed](assets/post-login.png)
 *Home feed displaying pins from followed users and trending content.*
 
-![Board Management](path/to/your/screenshot3.png)
-*Board management interface for organizing saved posts.*
+![Edit Profile](assets/edit-profile.png)
+*Edit Profile info for updating picture and username.*
 
-![Post Interaction](path/to/your/screenshot4.png)
+![Post Interaction](assets/show-image.png)
 *Post interaction view showing comments, likes, and share options.*
 
 ## 🕹️ How to Use

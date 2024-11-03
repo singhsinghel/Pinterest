@@ -104,7 +104,7 @@ app.use('/boards',isLoggedIn, boardsRouter);
 // app.get('/ping', (req, res) => {
 //     res.sendStatus(200); // Respond to the ping
 // });
-app.all('*',(req,res,bext)=>{
+app.all('*',(req,res,next)=>{
     next(new ExpressError(404,"You are lost!"));
 })
 
